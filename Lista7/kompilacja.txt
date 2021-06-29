@@ -1,0 +1,4 @@
+zad1 : gcc zad1.c -o z1 -m32
+zad2 : gcc zad2.c -o z2 -lpthread
+zad3: gcc zad3.c -o z3, a laczenie z serwerem za pomocą protokołu telnet.
+$ telnet localhost 8888

@@ -1,0 +1,50 @@
+/Dzielenie z resztą
+/ Wojciech Strzelecki
+
+Clear
+Input
+Store devidee
+Input 
+Store devider
+Jump loop
+
+
+
+loop, 	Load devidee
+		Subt devider
+        Skipcond 800
+        Jump endloop
+        Store devidee
+        Load result
+        Add one
+		Store result
+        Jump loop
+				
+endloop, 	Load devidee
+			Subt devider
+            Skipcond 400
+            Jump halt
+            Load result
+        	Add one
+			Store result
+            Load NULL
+			Store devidee
+            Jump halt
+            
+            
+halt, 	Load result
+		Output
+        Load NULL
+        Store result
+		Load devidee
+		Output
+        Load NULL
+		Store devidee
+        Halt
+
+
+devidee, DEC 0
+devider, DEC 0
+one, DEC 1
+result, DEC 0
+NULL, DEC 0

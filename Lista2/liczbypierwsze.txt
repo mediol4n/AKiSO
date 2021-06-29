@@ -1,0 +1,114 @@
+
+/Wypisywanie liczb pierwszych z zakresu
+/Pierwsza liczba może być dowolna, druga zaś musi wynosić conajmniej 2
+/Wojciech Strzelecki
+
+CLEAR
+Input
+Store LOWRANGE
+Input
+Store HIGHRANGE
+Load HIGHRANGE /sprawdzamy czy gorny zakres nie jest mniejszy od dolnego
+Subt LOWRANGE
+Skipcond 800
+Jump stop
+
+
+Load LOWRANGE /sprawdzamy czy dolny zakres jest co najmniej 2
+Subt TWO
+Skipcond 800
+Jump changeLow
+Jump start
+
+
+changeLow, 	Load TWO 
+			Store LOWRANGE /ustawiamy dolny zakres na 2
+			
+start,		load LOWRANGE
+			Store CURRENTNUM
+            
+squarecurrdivider, 	Load SQRCURRDIVIDER
+					Add CURRDIVIDER
+					Store SQRCURRDIVIDER
+					Load MULTIPLIER
+					Subt ONE
+            		Skipcond 800
+            		Jump checksquare
+                    Store MULTIPLIER
+                    Jump squarecurrdivider
+
+checksquare,	Load CURRENTNUM
+				subt SQRCURRDIVIDER
+				Skipcond 000
+                Jump isequal
+				Jump output
+
+
+isequal,		Load CURRENTNUM
+				Subt SQRCURRDIVIDER
+				Skipcond 400
+                Jump loop
+                Jump next
+			
+			
+            
+loop,		Load CURRENTNUM
+			Subt CURRDIVIDER
+			Store CURRENTNUM
+			Skipcond 800
+            Jump endloop
+            Jump loop
+
+endloop,	Load CURRENTNUM
+			Skipcond 000
+            Jump next
+            Load CURRDIVIDER
+			Add ONE
+            Store CURRDIVIDER
+            Load LOWRANGE
+			Store CURRENTNUM
+            Load NULL
+			Store SQRCURRDIVIDER
+            Load CURRDIVIDER
+			Store MULTIPLIER
+			Jump squarecurrdivider
+
+            
+            
+next, 		Load LOWRANGE
+			Add ONE
+			Store LOWRANGE
+            Load LOWRANGE
+			Subt HIGHRANGE
+			Skipcond 800
+            Jump prepare
+            Jump stop
+			
+prepare,	Load LOWRANGE
+			Store CURRENTNUM
+			Load TWO
+			Store CURRDIVIDER
+            Load TWO
+			Store MULTIPLIER
+            Load NULL
+			Store SQRCURRDIVIDER
+			Jump squarecurrdivider
+            
+            
+            
+output, 	Load LOWRANGE
+			Output
+			Jump next
+  
+			
+stop,		halt
+
+LOWRANGE, DEC 0
+HIGHRANGE, DEC 0
+ONE, DEC 1
+TWO, DEC 2
+NULL, DEC 0
+CURRENTNUM, DEC 0
+CURRDIVIDER, DEC 2
+MULTIPLIER, DEC 2
+SQRCURRDIVIDER, DEC 0
